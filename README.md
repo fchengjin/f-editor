@@ -1,29 +1,10 @@
 # md-editor
+一个基于vue的markdown编辑器和渲染器
+由[mavon-editor 2.7.5](https://github.com/hinesboy/mavonEditor)版本修改而成。支持服务端渲染。拆分成两个组件:mdEditor和mdRender。
 
-## Project setup
-```
-yarn install
-```
+## 注意事项
+ 一定要配置
+## 开始使用
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
 
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 主要功能

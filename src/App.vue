@@ -1,28 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <md-editor
+      v-model="content"
+      style="height: 500px;"
+    />
+    <md-render :value="content"></md-render>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Editor from '@/components/Editor/index.js'
+const { MdEditor, MdRender } = Editor
 export default {
   name: 'app',
+  data () {
+    return {
+      content: ''
+    }
+  },
   components: {
-    HelloWorld
+    MdEditor,
+    MdRender
+  },
+  methods: {
+    // 在编辑器上传图片时使用
+    async handleImgAdd (pos, file, vm) {
+      vm.loading = true
+      try {
+        const res = await this.upload(file)
+        vm.$img2Url(pos, this.$cfg.getImgPath(res.name))
+      } catch (e) {
+        console.log('上传失败', e)
+      }
+      vm.loading = false
+    }
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

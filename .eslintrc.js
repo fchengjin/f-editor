@@ -9,7 +9,9 @@ module.exports = {
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'camelcase': 0,
+    'import/no-webpack-loader-syntax': 0
   },
   parserOptions: {
     parser: 'babel-eslint'
