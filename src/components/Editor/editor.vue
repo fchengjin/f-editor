@@ -49,7 +49,7 @@
         <render
           v-show="!sHtmlCode" ref="vShowContent" :class="{'scroll-style': sScrollStyle}"
           class="v-show-content" :value="dValue" :external-link="externalLink" :toc-option="tocOption"
-          :forbidden-hash="forbiddenHash" @toc="handleToc"
+          :forbidden-hash="forbiddenHash" @toc="handleToc" @render="handleRender"
         />
         <div v-show="sHtmlCode" :class="{'scroll-style': sScrollStyle}" class="v-show-content-html">
           {{ dRender }}
@@ -353,6 +353,9 @@ export default {
     document.body.removeChild(this.$refs.help)
   },
   methods: {
+    handleRender (val) {
+      this.dRender = val
+    },
     handleToc (tocHtml) {
       this.toc = tocHtml
     },
