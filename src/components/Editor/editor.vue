@@ -4,39 +4,53 @@
     <!--工具栏-->
     <div v-show="toolbarsFlag" class="v-note-op" :class="{'shadow': boxShadow}">
       <toolbar-left
-        ref="toolbar_left" :editable="editable" :d-words="dWords"
-        :toolbars="toolbars" :image_filter="imageFilter" @toolbar_left_click="toolbar_left_click"
-        @toolbar_left_addlink="toolbar_left_addlink" @imgAdd="$imgAdd"
+        ref="toolbar_left"
+        :editable="editable"
+        :d-words="dWords"
+        :toolbars="toolbars"
+        :image_filter="imageFilter"
+        @toolbar_left_click="toolbar_left_click"
+        @toolbar_left_addlink="toolbar_left_addlink"
+        @imgAdd="$imgAdd"
       >
-        <slot slot="left-toolbar-before" name="left-toolbar-before" />
-        <slot slot="left-toolbar-after" name="left-toolbar-after" />
+        <slot slot="left-toolbar-before" name="left-toolbar-before"/>
+        <slot slot="left-toolbar-after" name="left-toolbar-after"/>
       </toolbar-left>
       <toolbar-right
-        ref="toolbar_right" :d-words="dWords" :toolbars="toolbars"
+        ref="toolbar_right"
+        :d-words="dWords"
+        :toolbars="toolbars"
         :s-subfield="sSubfield"
         :s-preview-switch="sPreviewSwitch"
-        :s-full-screen="sFullScreen" :s-html-code="sHtmlCode"
+        :s-full-screen="sFullScreen"
+        :s-html-code="sHtmlCode"
         :s-navigation="sNavigation"
         @toolbar_right_click="toolbar_right_click"
       >
-        <slot slot="right-toolbar-before" name="right-toolbar-before" />
-        <slot slot="right-toolbar-after" name="right-toolbar-after" />
+        <slot slot="right-toolbar-before" name="right-toolbar-before"/>
+        <slot slot="right-toolbar-after" name="right-toolbar-after"/>
       </toolbar-right>
     </div>
     <!--编辑展示区域-->
     <div class="v-note-panel" :class="{'shadow': boxShadow}">
       <!--编辑区-->
       <div
-        ref="vNoteEdit" class="v-note-edit divarea-wrapper" :class="{'scroll-style': sScrollStyle , 'single-edit': !sPreviewSwitch && !sHtmlCode , 'single-show': (!sSubfield && sPreviewSwitch) || (!sSubfield && sHtmlCode)}"
+        ref="vNoteEdit"
+        class="v-note-edit divarea-wrapper"
+        :class="{'scroll-style': sScrollStyle , 'single-edit': !sPreviewSwitch && !sHtmlCode , 'single-show': (!sSubfield && sPreviewSwitch) || (!sSubfield && sHtmlCode)}"
         @scroll="$v_edit_scroll"
         @click="textAreaFocus"
       >
         <div class="content-input-wrapper">
           <!-- 双栏 -->
           <auto-textarea
-            ref="vNoteTextarea" v-model="dValue"
-            :placeholder="placeholder ? placeholder : dWords.start_editor" class="content-input"
-            :font-size="fontSize" line-height="1.5" full-height
+            ref="vNoteTextarea"
+            v-model="dValue"
+            :placeholder="placeholder ? placeholder : dWords.start_editor"
+            class="content-input"
+            :font-size="fontSize"
+            line-height="1.5"
+            full-height
             auto-focus
           />
         </div>
@@ -44,29 +58,44 @@
       <!--展示区-->
       <div
         v-show="sPreviewSwitch || sHtmlCode"
-        :class="{'single-show': (!sSubfield && sPreviewSwitch) || (!sSubfield && sHtmlCode)}" class="v-note-show"
+        :class="{'single-show': (!sSubfield && sPreviewSwitch) || (!sSubfield && sHtmlCode)}"
+        class="v-note-show"
       >
         <render
-          v-show="!sHtmlCode" ref="vShowContent" :class="{'scroll-style': sScrollStyle}"
-          class="v-show-content" :value="dValue" :external-link="externalLink" :toc-option="tocOption"
-          :forbidden-hash="forbiddenHash" @toc="handleToc" @render="handleRender"
+          v-show="!sHtmlCode"
+          ref="vShowContent"
+          :class="{'scroll-style': sScrollStyle}"
+          class="v-show-content"
+          :value="dValue"
+          :external-link="externalLink"
+          :toc-option="tocOption"
+          :forbidden-hash="forbiddenHash"
+          @toc="handleToc"
+          @render="handleRender"
         />
-        <div v-show="sHtmlCode" :class="{'scroll-style': sScrollStyle}" class="v-show-content-html">
-          {{ dRender }}
-        </div>
+        <div
+          v-show="sHtmlCode"
+          :class="{'scroll-style': sScrollStyle}"
+          class="v-show-content-html"
+        >{{ dRender }}</div>
       </div>
 
       <!--标题导航-->
       <transition name="slideTop">
         <div v-show="sNavigation" class="v-note-navigation-wrapper" :class="{'shadow': boxShadow}">
           <div class="v-note-navigation-title" :class="{'shadow': boxShadow}">
-            {{ dWords.navigation_title }}<i
+            {{ dWords.navigation_title }}
+            <i
               class="fa fa-mavon-times v-note-navigation-close"
               aria-hidden="true"
               @click="toolbar_right_click('navigation')"
             />
           </div>
-          <div ref="navigationContent" class="v-note-navigation-content scroll-style markdown-body" v-html="toc" />
+          <div
+            ref="navigationContent"
+            class="v-note-navigation-content scroll-style markdown-body"
+            v-html="toc"
+          />
         </div>
       </transition>
     </div>
@@ -76,16 +105,24 @@
         <div v-if="sHelp" class="v-note-help-wrapper" @click="toolbar_right_click('help')">
           <div class="v-note-help-content" :class="{'shadow': boxShadow}">
             <i
-              class="fa fa-mavon-times" aria-hidden="true"
+              class="fa fa-mavon-times"
+              aria-hidden="true"
               @click.stop.prevent="toolbar_right_click('help')"
             />
-            <render class="scroll-style v-note-help-show" :value="dHelp" :external-link="externalLink" />
+            <render
+              class="scroll-style v-note-help-show"
+              :value="dHelp"
+              :external-link="externalLink"
+            />
           </div>
         </div>
       </div>
     </transition>
     <div v-if="loading" class="loading">
       <img :src="loadingSvg" style="width: 100px; height: 100px; background: transparent;">
+    </div>
+    <div :class="{'show': sReadModel}" class="v-note-read-model scroll-style" ref="vReadModel">
+      <div ref="vNoteReadContent" class="v-note-read-content markdown-body" v-html="dRender"></div>
     </div>
   </div>
 </template>
@@ -97,8 +134,8 @@ import loadingSvg from './loading.svg'
 import autoTextarea from './components/auto-textarea'
 import { keydownListen } from './lib/core/keydown-listen.js'
 import {
-  fullscreenchange,
   /* windowResize, */
+  fullscreenchange,
   scrollLink,
   insertTextAtCaret,
   insertTab,
@@ -109,7 +146,10 @@ import {
   removeLine
 } from './lib/core/extra-function.js'
 import { stopEvent } from './lib/util.js'
-import { toolbar_left_click, toolbar_left_addlink } from './lib/toolbarLeftClick.js'
+import {
+  toolbar_left_click,
+  toolbar_left_addlink
+} from './lib/toolbarLeftClick.js'
 import { toolbar_right_click } from './lib/toolbarRightClick.js'
 import { CONFIG } from './lib/config.js'
 import ToolbarLeft from './components/toolbar-left'
@@ -122,7 +162,8 @@ export default {
     ToolbarRight,
     Render
   },
-  props: { // 是否渲染滚动条样式(webkit)
+  props: {
+    // 是否渲染滚动条样式(webkit)
     scrollStyle: {
       type: Boolean,
       default: true
@@ -193,7 +234,7 @@ export default {
       default: null
     },
     externalLink: {
-      type: [ Object, Boolean ],
+      type: [Object, Boolean],
       default: true
     },
     imageFilter: {
@@ -249,7 +290,7 @@ export default {
       sHtmlCode: false, // 分栏情况下查看html
       dHelp: null,
       dWords: null,
-      sTableEnter: false, // 回车事件是否在表格中执行
+      sReadModel: false,
       dHistory: (() => {
         const tempArray = []
         tempArray.push(this.value)
@@ -313,6 +354,10 @@ export default {
     this.$el.addEventListener('drop', function (e) {
       $vm.$drag(e)
     })
+    fullscreenchange(this.$el, () => {
+      this.sReadModel = !this.sReadModel
+      this.readmodel(this.sReadModel, this.dValue)
+    })
     // 浏览器siz大小
     /* windowResize(this); */
     keydownListen(this)
@@ -325,8 +370,6 @@ export default {
       // 初始化Textarea编辑开关
       this.editableTextarea()
     })
-    // fullscreen事件
-    fullscreenchange(this)
     this.dValue = this.value
     // 将help添加到末尾
     document.body.appendChild(this.$refs.help)
@@ -341,9 +384,10 @@ export default {
           if (href.startsWith('#')) {
             event.preventDefault()
             const anchor = document.querySelector(href)
-            anchor && anchor.scrollIntoView({
-              behavior: 'smooth'
-            })
+            anchor &&
+              anchor.scrollIntoView({
+                behavior: 'smooth'
+              })
           }
         }
       })
@@ -390,7 +434,7 @@ export default {
           // with the image pasting process
           stopEvent($e)
           const oFile = item.getAsFile()
-          this.$refs.toolbar_left.$imgFilesAdd([ oFile ])
+          this.$refs.toolbar_left.$imgFilesAdd([oFile])
         }
       }
     },
@@ -409,12 +453,11 @@ export default {
           // 去除特殊字符
           $file._name = $file.name.replace(/[[\]()+{}&|\\*^%$#@-]/g, '')
 
-          $vm.insertText($vm.getTextareaDom(),
-            {
-              prefix: '![' + $file._name + '](' + pos + ')',
-              subfix: '',
-              str: ''
-            })
+          $vm.insertText($vm.getTextareaDom(), {
+            prefix: '![' + $file._name + '](' + pos + ')',
+            subfix: '',
+            str: ''
+          })
           $vm.$nextTick(function () {
             $vm.$emit('imgAdd', pos, $file, this)
           })
@@ -436,7 +479,8 @@ export default {
     },
     $img2Url (fileIndex, url) {
       // x.replace(/(\[[^\[]*?\](?=\())\(\s*(\.\/2)\s*\)/g, "$1(http://path/to/png.png)")
-      const regStr = '(!\\[[^\\[]*?\\](?=\\())\\(\\s*(' + fileIndex + ')\\s*\\)'
+      const regStr =
+        '(!\\[[^\\[]*?\\](?=\\())\\(\\s*(' + fileIndex + ')\\s*\\)'
       const reg = new RegExp(regStr, 'g')
       this.dValue = this.dValue.replace(reg, '$1(' + url + ')')
     },
@@ -464,6 +508,10 @@ export default {
     // 切换全屏触发 （status , val）
     fullscreen (status, val) {
       this.$emit('fullScreen', status, val)
+    },
+    // 打开阅读模式触发（status , val）
+    readmodel (status, val) {
+      this.$emit('readModel', status, val)
     },
     // 切换阅读编辑触发 （status , val）
     previewtoggle (status, val) {
@@ -528,7 +576,8 @@ export default {
       this.dHistoryIndex = this.dHistory.length - 1
     },
     initLanguage () {
-      const lang = CONFIG.langList.indexOf(this.language) >= 0 ? this.language : 'zh-CN'
+      const lang =
+        CONFIG.langList.indexOf(this.language) >= 0 ? this.language : 'zh-CN'
       this.dHelp = CONFIG[`help_${lang}`]
       this.dWords = CONFIG[`words_${lang}`]
     },
@@ -543,7 +592,7 @@ export default {
     },
     // 清空上一步 下一步缓存
     $emptyHistory () {
-      this.dHistory = [ this.dValue ] // 编辑记录
+      this.dHistory = [this.dValue] // 编辑记录
       this.dHistoryIndex = 0 // 编辑记录索引
     }
   }
@@ -554,7 +603,7 @@ export default {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,.6);
+  background: rgba(0, 0, 0, 0.6);
   top: 0;
   left: 0;
   z-index: 2000;

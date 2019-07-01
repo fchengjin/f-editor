@@ -13,6 +13,15 @@ function $toolbar_right_help_click ($vm) {
   }
 }
 
+function $toolbar_right_read_click ($vm) {
+  let element = $vm.$refs.vReadModel
+  if (!$vm.sReadModel) {
+    element.requestFullscreen()
+  } else {
+    element.exitFullscreen()
+  }
+}
+
 function $toolbar_right_preview_click ($vm) {
   $vm.sPreviewSwitch = !$vm.sPreviewSwitch
   if ($vm.previewtoggle) {
@@ -49,6 +58,7 @@ export const toolbar_right_click = (_type, $vm) => {
   const _other_right_click = {
     help: $toolbar_right_help_click,
     html: $toolbar_right_html_click,
+    read: $toolbar_right_read_click,
     preview: $toolbar_right_preview_click,
     fullscreen: $toolbar_right_fullscreen_click,
     navigation: $toolbar_right_navigation_click,

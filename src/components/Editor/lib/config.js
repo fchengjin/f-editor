@@ -65,6 +65,7 @@ export const CONFIG = {
     alignright: true,
     navigation: true,
     subfield: true,
+    readmodel: true,
     fullscreen: true,
     htmlcode: true,
     help: true,

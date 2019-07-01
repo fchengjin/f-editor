@@ -247,20 +247,18 @@ export const scrollLink = ($event, $vm) => {
   }
 }
 
-export const fullscreenchange = $vm => {
-  // 阅读模式 全屏监听事件
-  $vm.$el.addEventListener('fullscreenchange', function () {
-    $vm.$toolbar_right_read_change_status()
-  }, false)
-  $vm.$el.addEventListener('mozfullscreenchange', function () {
-    $vm.$toolbar_right_read_change_status()
-  }, false)
-  $vm.$el.addEventListener('webkitfullscreenchange', function () {
-    $vm.$toolbar_right_read_change_status()
-  }, false)
-  $vm.$el.addEventListener('msfullscreenchange', function () {
-    $vm.$toolbar_right_read_change_status()
-  }, false)
+/**
+ * 监听浏览器fullscreen
+ * @param el HTMLElement
+ * @param fn handle fullscreenchange function
+ * @param capture
+ */
+
+export const fullscreenchange = (el, fn, capture = false) => {
+  el.addEventListener('fullscreenchange', fn, capture)
+  el.addEventListener('mozfullscreenchange', fn, capture)
+  el.addEventListener('webkitfullscreenchange', fn, capture)
+  el.addEventListener('msfullscreenchange', fn, capture)
 }
 
 export const windowResize = $vm => {

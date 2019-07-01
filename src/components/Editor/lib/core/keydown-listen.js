@@ -68,6 +68,14 @@ export const keydownListen = $vm => {
           }
           break
         }
+        case KEY_CODE.F11: {
+          // F11 阅读
+          if ($vm.toolbars.readmodel) {
+            e.preventDefault()
+            $vm.toolbar_right_click('read')
+          }
+          break
+        }
         case KEY_CODE.F12: {
           // F12 单双栏切换
           if ($vm.toolbars.subfield) {

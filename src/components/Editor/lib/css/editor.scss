@@ -290,8 +290,17 @@ textarea:disabled {
     overflow-y: auto;
     @include scrollbar;
     box-sizing: border-box;
+    &.show {
+      display: block;
+    }
+  }
+  .v-note-read-content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
   }
 }
+
 .v-note-help-wrapper {
   position: fixed;
   left: 0;
