@@ -4,8 +4,6 @@ import {
   loadScript
 } from '../core/extra-function.js'
 
-import toc from 'markdown-it-ftoc'
-
 const markdown_config = {
   html: true, // Enable HTML tags in source
   xhtmlOut: true, // Use '/' to close single tags (<br />).
@@ -42,6 +40,9 @@ const miip = require('markdown-it-images-preview')
 
 // 处理代码高亮
 const mihe = require('markdown-it-highlightjs-external')
+
+const toc = require('markdown-it-ftoc')
+
 const missLangs = {}
 const needLangs = []
 const hljs_opts = {

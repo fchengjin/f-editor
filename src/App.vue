@@ -3,19 +3,24 @@
     <md-editor
       v-model="content"
       style="height: 500px;"
+      :toc-option="tocOption"
     />
-    <md-render :value="content"></md-render>
+    <md-render :value="content" :toc-option="tocOption"></md-render>
   </div>
 </template>
 
 <script>
+import uslug from 'uslug'
 import Editor from '@/components/Editor/index.js'
 const { MdEditor, MdRender } = Editor
 export default {
   name: 'app',
   data () {
     return {
-      content: ''
+      content: '',
+      tocOption: {
+        slugify: uslug
+      }
     }
   },
   components: {

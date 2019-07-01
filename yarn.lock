@@ -5210,10 +5210,10 @@ markdown-it-footnote@^3.0.1:
   resolved "https://registry.npm.taobao.org/markdown-it-footnote/download/markdown-it-footnote-3.0.1.tgz#7f3730747cacc86e2fe0bf8a17a710f34791517a"
   integrity sha1-fzcwdHysyG4v4L+KF6cQ80eRUXo=
 
-markdown-it-ftoc@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npm.taobao.org/markdown-it-ftoc/download/markdown-it-ftoc-1.0.0.tgz?cache=0&sync_timestamp=1561820697661&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmarkdown-it-ftoc%2Fdownload%2Fmarkdown-it-ftoc-1.0.0.tgz#a3827f6e6fc1ab95bd6801ee3333c75be5fcfc5e"
-  integrity sha1-o4J/bm/Bq5W9aAHuMzPHW+X8/F4=
+markdown-it-ftoc@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/markdown-it-ftoc/download/markdown-it-ftoc-1.0.3.tgz?cache=0&sync_timestamp=1561970010894&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmarkdown-it-ftoc%2Fdownload%2Fmarkdown-it-ftoc-1.0.3.tgz#22215e8bd4e22437025be22889aa8da8ada2bfa5"
+  integrity sha1-IiFei9TiJDcCW+IoiaqNqK2iv6U=
 
 markdown-it-highlightjs-external@^1.0.1:
   version "1.0.1"
@@ -5254,11 +5254,6 @@ markdown-it-task-lists@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npm.taobao.org/markdown-it-task-lists/download/markdown-it-task-lists-2.1.1.tgz#f68f4d2ac2bad5a2c373ba93081a1a6848417088"
   integrity sha1-9o9NKsK61aLDc7qTCBoaaEhBcIg=
-
-markdown-it-toc@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npm.taobao.org/markdown-it-toc/download/markdown-it-toc-1.1.0.tgz#6d189858e32b3deb4ff3ad2713fa927439c957e0"
-  integrity sha1-bRiYWOMrPetP860nE/qSdDnJV+A=
 
 markdown-it@^8.4.2:
   version "8.4.2"
@@ -8300,6 +8295,11 @@ universalify@^0.1.0:
   resolved "https://registry.npm.taobao.org/universalify/download/universalify-0.1.2.tgz#b646f69be3942dabcecc9d6639c80dc105efaa66"
   integrity sha1-tkb2m+OULavOzJ1mOcgNwQXvqmY=
 
+"unorm@>= 1.0.0":
+  version "1.5.0"
+  resolved "https://registry.npm.taobao.org/unorm/download/unorm-1.5.0.tgz#01fa9b76f1c60f7916834605c032aa8962c3f00a"
+  integrity sha1-AfqbdvHGD3kWg0YFwDKqiWLD8Ao=
+
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/unpipe/download/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
@@ -8369,6 +8369,13 @@ use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.npm.taobao.org/use/download/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha1-1QyMrHmhn7wg8pEfVuuXP04QBw8=
+
+uslug@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npm.taobao.org/uslug/download/uslug-1.0.4.tgz#b9a22f0914e0a86140633dacc302e5f4fa450677"
+  integrity sha1-uaIvCRTgqGFAYz2swwLl9PpFBnc=
+  dependencies:
+    unorm ">= 1.0.0"
 
 util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"

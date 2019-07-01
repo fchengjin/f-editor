@@ -1,6 +1,12 @@
 $border-color: 1px solid #e0e0e0;
 $op-height: 40px;
 @import 'scroll.scss';
+.markdown-body, .v-note-wrapper {
+  box-sizing: border-box;
+  *{
+    box-sizing: border-box;
+  }
+}
 textarea:disabled {
   background-color: #ffffff;
 }
