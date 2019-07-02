@@ -7,7 +7,7 @@
         ref="toolbar_left"
         :editable="editable"
         :d-words="dWords"
-        :toolbars="toolbars"
+        :toolbars="bar"
         :image_filter="imageFilter"
         @toolbar_left_click="toolbar_left_click"
         @toolbar_left_addlink="toolbar_left_addlink"
@@ -19,7 +19,7 @@
       <toolbar-right
         ref="toolbar_right"
         :d-words="dWords"
-        :toolbars="toolbars"
+        :toolbars="bar"
         :s-subfield="sSubfield"
         :s-preview-switch="sPreviewSwitch"
         :s-full-screen="sFullScreen"
@@ -229,6 +229,22 @@ export default {
         return CONFIG.toolbars
       }
     },
+    // 小屏幕时的toolbars
+    sToolbars: {
+      type: Object,
+      default () {
+        return {
+          underline: true,
+          strikethrough: true,
+          imagelink: true,
+          table: true,
+          undo: true,
+          save: true,
+          preview: true,
+          navigation: true
+        }
+      }
+    },
     placeholder: {
       type: String,
       default: null
@@ -299,7 +315,8 @@ export default {
       dHistoryIndex: 0, // 编辑记录索引
       currentTimeout: '',
       dImageFile: [],
-      toc: ''
+      toc: '',
+      smallScreen: false
     }
   },
   watch: {
@@ -342,6 +359,11 @@ export default {
       return this.sPreviewSwitch
     }
   },
+  computed: {
+    bar () {
+      return this.smallScreen ? this.sToolbars : this.toolbars
+    }
+  },
   created () {
     // 初始化语言
     this.initLanguage()
@@ -354,12 +376,15 @@ export default {
     this.$el.addEventListener('drop', function (e) {
       $vm.$drag(e)
     })
+    // 处理浏览器resize事件
+    this.handleResize()
+    window.addEventListener('resize', this.handleResize)
+
     fullscreenchange(this.$el, () => {
       this.sReadModel = !this.sReadModel
       this.readmodel(this.sReadModel, this.dValue)
     })
-    // 浏览器siz大小
-    /* windowResize(this); */
+
     keydownListen(this)
     // 图片预览事件监听
     // 设置默认焦点
@@ -395,8 +420,17 @@ export default {
   },
   beforeDestroy () {
     document.body.removeChild(this.$refs.help)
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
+    handleResize () {
+      if (this.$el.clientWidth < 768) {
+        this.sSubfield = false
+        this.smallScreen = true
+      } else {
+        this.smallScreen = false
+      }
+    },
     handleRender (val) {
       this.dRender = val
     },

@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <md-editor
+    <f-editor
       v-model="content"
       style="height: 500px;"
       :toc-option="tocOption"
     />
-    <md-render :value="content" :toc-option="tocOption"></md-render>
+    <f-render :value="content" :toc-option="tocOption"/>
   </div>
 </template>
 
 <script>
 import uslug from 'uslug'
 import Editor from '@/components/Editor/index.js'
-const { MdEditor, MdRender } = Editor
+const { FEditor, FRender } = Editor
 export default {
   name: 'app',
   data () {
@@ -24,8 +24,8 @@ export default {
     }
   },
   components: {
-    MdEditor,
-    MdRender
+    FEditor,
+    FRender
   },
   methods: {
     // 在编辑器上传图片时使用
