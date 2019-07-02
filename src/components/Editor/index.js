@@ -1,11 +1,11 @@
-import MdEditor from './editor.vue'
-import MdRender from './render.vue'
+import FEditor from './editor.vue'
+import FRender from './render.vue'
 import './lib/css/editor.scss'
 export default {
-  MdEditor,
-  MdRender,
+  FEditor,
+  FRender,
   install (Vue) {
-    Vue.component('MdEditor', MdEditor)
-    Vue.component('MdRender', MdRender)
+    Vue.component('FEditor', FEditor)
+    Vue.component('FRender', FRender)
   }
 }

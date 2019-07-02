@@ -1,0 +1,23 @@
+<meta charset="utf-8">
+<title>f-md demo</title>
+<script src="./f-md.umd.js"></script>
+
+<link rel="stylesheet" href="./f-md.css">
+<body>
+  
+    <div id="app">
+        <f-editor v-model="value"></f-editor>
+        <f-render :value="value"/>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="./f-md.umd.js"></script>
+      <script>
+        Vue.use(window['f-md'])
+        new Vue({
+          el: '#app',
+          data() {
+              return { value: '' }
+          }
+        })
+      </script>
+</body>

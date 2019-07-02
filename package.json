@@ -1,6 +1,6 @@
 {
-  "name": "md-editor",
-  "version": "0.1.0",
+  "name": "f-md",
+  "version": "1.0.0",
   "private": false,
   "keywords": [
     "markdown-it",
@@ -8,6 +8,7 @@
     "vue-markdown",
     "markdown-editor"
   ],
+  "main": "dist/f-md.umd.min.js",
   "author": {
     "email": "fchengjin@126.com",
     "name": "fcheng"
@@ -16,9 +17,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --dest doc",
     "lint": "vue-cli-service lint",
-    "prod": "vue-cli-service build --target lib --name MdEditor src/components/Editor/index.js"
+    "prod": "vue-cli-service build --target lib --name f-md src/components/Editor/index.js"
   },
   "dependencies": {
     "core-js": "^2.6.5",
