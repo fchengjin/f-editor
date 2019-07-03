@@ -4,8 +4,10 @@
       v-model="content"
       style="height: 500px;"
       :toc-option="tocOption"
+      :ishljs="ishljs"
     />
-    <f-render :value="content" :toc-option="tocOption"/>
+    <f-render :value="content" :ishljs="ishljs" :toc-option="tocOption" class="render-content"/>
+    <button @click="toggle">toggle</button>
   </div>
 </template>
 
@@ -20,7 +22,8 @@ export default {
       content: '',
       tocOption: {
         slugify: uslug
-      }
+      },
+      ishljs: false
     }
   },
   components: {
@@ -38,16 +41,26 @@ export default {
         console.log('上传失败', e)
       }
       vm.loading = false
+    },
+    toggle () {
+      this.ishljs = !this.ishljs
     }
   }
 }
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+.render-content {
+  padding: 16px;
 }
 </style>

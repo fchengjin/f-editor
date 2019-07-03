@@ -95,6 +95,10 @@ markdown
 
 export default {
   props: {
+    ishljs: {
+      type: Boolean,
+      default: true
+    },
     tocOption: {
       type: Object,
       default () {
@@ -114,6 +118,8 @@ export default {
       }
     }
 
+    hljs_opts.highlighted = this.ishljs
+
     this.markdownIt.use(mihe, hljs_opts)
       .use(katex).use(toc, Object.assign({}, this.tocOption, defaultTocOption))
   },
@@ -124,13 +130,17 @@ export default {
         // 加载对应hljs
         for (let i = 0; i < needLangs.length; i++) {
           const url = this.p_external_link.hljs_lang(needLangs[i])
-          loadScript(url, () => {
-            this.iRender()
-          })
+          loadScript(url)
         }
       }
       this.mdRender = this.markdownIt.render(this.value)
       this.$emit('render', this.mdRender)
+    }
+  },
+  watch: {
+    ishljs: function (val) {
+      hljs_opts.highlighted = val
+      this.iRender()
     }
   }
 }

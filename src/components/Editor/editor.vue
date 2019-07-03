@@ -71,6 +71,7 @@
           :toc-option="tocOption"
           :forbidden-hash="forbiddenHash"
           @toc="handleToc"
+          :ishljs="ishljs"
           @render="handleRender"
         />
         <div
@@ -128,7 +129,6 @@
 </template>
 
 <script>
-/* eslint-disable no-unused-vars */
 import Render from './render'
 import loadingSvg from './loading.svg'
 import autoTextarea from './components/auto-textarea'
@@ -168,6 +168,10 @@ export default {
       type: Boolean,
       default: true
     },
+    ishljs: {
+      type: Boolean,
+      default: true
+    },
     tocOption: {
       type: Object,
       default () {
@@ -184,11 +188,7 @@ export default {
     },
     fontSize: {
       type: String,
-      default: '15px'
-    },
-    help: {
-      type: String,
-      default: null
+      default: '14px'
     },
     // 初始value
     value: {
