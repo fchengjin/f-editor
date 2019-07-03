@@ -1,9 +1,7 @@
-# md-editor
+# f-editor
 一个基于vue的markdown编辑器和渲染器
-由[mavon-editor 2.7.5](https://github.com/hinesboy/mavonEditor)版本修改而成。支持服务端渲染。拆分成两个组件:mdEditor和mdRender。
+由[mavon-editor 2.7.5](https://github.com/hinesboy/mavonEditor)版本修改而成。支持服务端渲染。拆分成两个组件:fEditor和fRender。
 
-## 注意事项
- 如果使用图片上传功能，一定要配置
 ## 开始使用
 
 ### Es6
@@ -191,7 +189,7 @@ toolbars: {
 |previewToggle|	Boolean: status , String: value|	切换预览编辑的回调事件(boolean: 预览开启状态)|
 |helpToggle|	Boolean: status , String: value|	查看帮助的回调事件(boolean: 帮助开启状态)|
 |navigationToggle|	Boolean: status , String: value|	切换导航目录的回调事件(boolean: 导航开启状态)|
-|imgAdd|	String: filename, File: imgfile|	图片文件添加回调事件(filename: 写在md中的文件名, File: File Object)|
+|imgAdd|	String: filename, File: imgfile, VueInstance: $vm|	图片文件添加回调事件(filename: 写在md中的文件名, File: File Object, $vm 编辑器实例)|
 
 ### slot插槽
 |name 插槽名称	|describe 描述|
@@ -202,41 +200,107 @@ toolbars: {
 |right-toolbar-after|右侧工具栏后方|         
 
 ### 快捷键
-|key|	keycode|	功能|
-|---|---|---|
-|F8|	119	|开启/关闭导航|
-|F9|	120|	预览/编辑切换|
-|F10|	121|	开启/关闭全屏|
-|F11|	122|	开启/关闭阅读模式|
-|F12|	123|	单栏/双栏切换|
-|TAB|	9|	缩进|
-|CTRL+ S|	17 + 83	|触发保存|
-|CTRL+ D|	17 + 68	|删除选中行|
-|CTRL+ Z|	17 + 90|	上一步|
-|CTRL+ Y|	17 + 89	|下一步|
-|CTRL+ BreakSpace|	17 + 8	|清空编辑|
-|CTRL+ B|	17 + 66|	加粗|
-|CTRL+ I|	17 + 73	|斜体|
-|CTRL+ H|	17 + 72	|# 标题|
-|CTRL+ 1|	17 + 97 or 49	|# 标题|
-|CTRL+ 2|	17 + 98 or 50|	## 标题|
-|CTRL+ 3|	17 + 99 or 51	|### 标题|
-|CTRL+ 4|	17 + 100 or 52|	#### 标题|
-|CTRL+ 5|	17 + 101 or 53|	##### 标题|
-|CTRL+ 6|	17 + 102 or 54|	###### 标题|
-|CTRL+ U|	17 + 85|	++下划线++|
-|CTRL+ M|	17 + 77	|==标记==|
-|CTRL+ Q|	17 + 81	|> 引用|
-|CTRL+ O|	17 + 79	|1. 有序列表|
-|CTRL+ L|	17 + 76	|链接|
-|CTRL+ ALT + S|	17 + 18 + 83|	^上角标^|
-|CTRL+ ALT + U|	17 + 18 + 85|	- 无序列表|
-|CTRL+ ALT + C|	17 + 18 + 67|	``` 代码块|
-|CTRL+ ALT + L|	17 + 18 + 76|	图片链接|
-|CTRL+ ALT + T|	17 + 18 + 84|	表格|
-|CTRL+ SHIFT + S|	17 + 16 + 83	|下角标|
-|CTRL+ SHIFT + D|	17 + 16 + 68	|中划线|
-|CTRL+ SHIFT + C|	17 + 16 + 67	|居中|
-|CTRL+ SHIFT + L|	17 + 16 + 76	|居左|
-|CTRL+ SHIFT + R|	17 + 16 + 82	|居右|
-|SHIFT + TAB|	16 + 9	|取消缩进|
+| key       | keycode  |            功能            |
+| -------- | :-----------: | :---------: |
+| F8           | 119 |  开启/关闭导航  |
+| F9           | 120   |  预览/编辑切换  |
+| F10     | 121   | 开启/关闭全屏 |
+| F11      | 122   | 开启/关闭阅读模式 |
+| F12       | 123   | 单栏/双栏切换 |
+| TAB  | 9  | 缩进 |
+| CTRL + S    | 17 + 83 | 触发保存 |
+| CTRL + D    | 17 + 68 | 删除选中行 |
+| CTRL + Z    | 17 + 90 | 上一步 |
+| CTRL + Y    | 17 + 89 | 下一步 |
+| CTRL + BreakSpace    | 17 + 8 | 清空编辑 |
+| CTRL + B       | 17 + 66 | **加粗** |
+| CTRL + I | 17 + 73 | *斜体* |
+| CTRL + H       | 17 + 72 | # 标题 |
+| CTRL + 1       | 17 + 97 or 49 | # 标题 |
+| CTRL + 2       | 17 + 98 or 50 | ## 标题 |
+| CTRL + 3       | 17 + 99 or 51 | ### 标题 |
+| CTRL + 4       | 17 + 100 or 52 | #### 标题 |
+| CTRL + 5       | 17 + 101 or 53 | ##### 标题 |
+| CTRL + 6       | 17 + 102 or 54 | ###### 标题 |
+| CTRL + U    | 17 + 85 | ++下划线++ |
+| CTRL + M    | 17 + 77 | ==标记== |
+| CTRL + Q    | 17 + 81 | > 引用 |
+| CTRL + O    | 17 + 79 | 1. 有序列表 |
+| CTRL + L    | 17 + 76 | [链接]() |
+| CTRL + ALT + S    | 17 + 18 + 83 | ^上角标^ |
+| CTRL + ALT + U    | 17 + 18 + 85 | - 无序列表 |
+| CTRL + ALT + C    | 17 + 18 + 67 | ``` 代码块 |
+| CTRL + ALT + L    | 17 + 18 + 76 | ![图片链接]() |
+| CTRL + ALT + T    | 17 + 18 + 84 | 表格 |
+| CTRL + SHIFT + S    | 17 + 16 + 83 | ~下角标~ |
+| CTRL + SHIFT + D    | 17 + 16 + 68 | ~~中划线~~ |
+| CTRL + SHIFT + C    | 17 + 16 + 67 | 居中 |
+| CTRL + SHIFT + L    | 17 + 16 + 76 | 居左 |
+| CTRL + SHIFT + R    | 17 + 16 + 82 | 居右 |
+| SHIFT + TAB    | 16 + 9 | 取消缩进 |
+
+### 图片上传
+```html
+<template>
+  <f-editor @imgAdd="handleImgAdd" v-model="content"></f-editor>
+</template>
+<script>
+  export default {
+    data() {
+      return {
+        content: ''
+      }
+    },
+    methods: {
+      handleImgAdd(pos, file, vm) {
+        vm.$img2Url(pos, file.miniurl) // 直接上传base64
+      }
+    }
+  }
+</script>
+```
+
+
+## 常见问题
+1. 图片上传问题
+  如果要使用图片功能，必须要处理`imgAdd`事件，在获取到图片url时，要调用`vm.$img2Url(pos, url)`将图片地址插入文档中。
+2. 目录中文
+   要在目录中使用中文，并想作为hash跳转，可使用以下方法
+   ```html
+   <template>
+     <f-editor :toc-option="tocOption"></f-editor>
+   </template>
+   <script>
+     // 需要先安装uslug依赖
+     import uslug from 'uslug'
+      export default{
+        data() {
+          return {
+            tocOption: {
+              slugify: uslug
+            },
+          }
+        }
+      }
+   </script>
+   ```
+3. hash跳转触发vue路由切换动画
+    可以设置`forbiddenHash`为`true`，原理是使用[scrollIntoView](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollIntoView)
+4. 获取文档目录，请监听`toc`事件
+
+## Markdown 语法拓展
+
+- [ftoc](https://github.com/fchengjin/markdown-it-ftoc)
+- [emoji](https://github.com/markdown-it/markdown-it-emoji)
+- [subscript](https://github.com/markdown-it/markdown-it-sub)
+- [superscript](https://github.com/markdown-it/markdown-it-sup)
+- [container](https://github.com/markdown-it/markdown-it-container)
+- [definition list](https://github.com/markdown-it/markdown-it-deflist)
+- [abbreviation](https://github.com/markdown-it/markdown-it-abbr)
+- [footnote](https://github.com/markdown-it/markdown-it-footnote)
+- [insert](https://github.com/markdown-it/markdown-it-ins)
+- [mark](https://github.com/markdown-it/markdown-it-mark)
+- [todo list](https://github.com/revin/markdown-it-task-lists)
+- [highlight](https://github.com/isagalaev/highlight.js)
+- [katex](https://github.com/Khan/KaTeX)
+- [images preview](https://github.com/CHENXCHEN/markdown-it-images-preview)

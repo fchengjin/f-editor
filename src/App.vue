@@ -5,6 +5,7 @@
       style="height: 500px;"
       :toc-option="tocOption"
       :ishljs="ishljs"
+      @imgAdd="handleImgAdd"
     />
     <f-render :value="content" :ishljs="ishljs" :toc-option="tocOption" class="render-content"/>
     <button @click="toggle">toggle</button>
@@ -32,15 +33,18 @@ export default {
   },
   methods: {
     // 在编辑器上传图片时使用
-    async handleImgAdd (pos, file, vm) {
-      vm.loading = true
-      try {
-        const res = await this.upload(file)
-        vm.$img2Url(pos, this.$cfg.getImgPath(res.name))
-      } catch (e) {
-        console.log('上传失败', e)
-      }
-      vm.loading = false
+    // async handleImgAdd (pos, file, vm) {
+    //   vm.loading = true
+    //   try {
+    //     const res = await this.upload(file)
+    //     vm.$img2Url(pos, res.url)
+    //   } catch (e) {
+    //     console.log('上传失败', e)
+    //   }
+    //   vm.loading = false
+    // },
+    handleImgAdd (pos, file, vm) {
+      vm.$img2Url(pos, file.miniurl)
     },
     toggle () {
       this.ishljs = !this.ishljs
