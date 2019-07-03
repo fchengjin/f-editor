@@ -433,9 +433,11 @@ export default {
     },
     handleRender (val) {
       this.dRender = val
+      this.$emit('render', val)
     },
     handleToc (tocHtml) {
       this.toc = tocHtml
+      this.$emit('toc', tocHtml)
     },
     textAreaFocus () {
       this.getTextareaDom().focus()
@@ -534,10 +536,6 @@ export default {
       toolbar_right_click(_type, this)
     },
     // @event
-    // 修改数据触发 （val ， val_render）
-    change (val, render) {
-      this.$emit('change', val, render)
-    },
     // 切换全屏触发 （status , val）
     fullscreen (status, val) {
       this.$emit('fullScreen', status, val)

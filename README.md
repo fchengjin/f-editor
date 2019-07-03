@@ -97,30 +97,30 @@ export default {
 
 ### props
 
-| name 名称	| type 类型 | default默认值| describe 描述|
+| name 名称	| type 类型 | default默认值| applicable component适用组件|describe 描述|
 | --- | ---- | ----|--- |
-|value|String||初始值|
-|tocOption|Object|{}|目录设置，参考[ftoc](https://github.com/fchengjin/markdown-it-ftoc#options)，注意`tocCallback`已被占用，如有需要，请监听`toc`事件|
-|forbiddenHash|Boolean|true|使用禁用hash跳转，避免触发vue路由切换动画|
-|language|String|zh-CN	|语言选择，暂支持 zh-CN: 中文简体 ， en: 英文 ， fr: 法语， pt-BR: 葡萄牙语， ru: 俄语， de: 德语， ja: 日语|
-|fontSize|String|14px	|编辑区域文字大小|
-|scrollStyle	|Boolean|true	|开启滚动条样式(暂时仅支持chrome)|
-|boxShadow|Boolean|true	|开启边框阴影|
-|subfield	|Boolean|	true|	true： 双栏(编辑预览同屏)， false： 单栏(编辑预览分屏)|
-|defaultOpen|	String||		edit： 默认展示编辑区域 ， preview： 默认展示预览区域 , 其他 = edit|
-|placeholder|	String|	开始编辑... |	输入框为空时默认提示文本|
-|editable|	Boolean|	true|	是否允许编辑|
-|codeStyle|	String|	code-github	|markdown样式： 默认github, 可选配色方案|
-|toolbarsFlag|	Boolean|	true|	工具栏是否显示|
-|navigation|	Boolean|	false|	默认展示目录|
-|shortCut|	Boolean|	true|	是否启用快捷键|
-|autofocus|	Boolean|	true|	自动聚焦到文本框|
-|ishljs|	Boolean|	true|	代码高亮|
-|imageFilter|	function|	null|	图片过滤函数，参数为一个File Object，要求返回一个Boolean, true表示文件合法，false表示文件不合法|
-|imageClick|	function|	null|	图片点击事件，默认为预览，可覆盖|
-|tabSize|	Number|	\t|	tab转化为几个空格，默认为\t|
-|toolbars|	Object|	如下例|	工具栏|
-|sToolbars|	Object|	如下例|	小屏幕时的工具栏|
+|value|String||fEditor, fRender|初始值|
+|tocOption|Object|{}|fEditor, fRender|目录设置，参考[ftoc](https://github.com/fchengjin/markdown-it-ftoc#options)，注意`tocCallback`已被占用，如有需要，请监听`toc`事件|
+|forbiddenHash|Boolean|true|fEditor, fRender|使用禁用hash跳转，避免触发vue路由切换动画|
+|language|String|zh-CN	|fEditor|语言选择，暂支持 zh-CN: 中文简体 ， en: 英文 ， fr: 法语， pt-BR: 葡萄牙语， ru: 俄语， de: 德语， ja: 日语|
+|fontSize|String|14px	|fEditor|编辑区域文字大小|
+|scrollStyle	|Boolean|true	|fEditor, fRender|开启滚动条样式(暂时仅支持chrome)|
+|boxShadow|Boolean|true	|fEditor|开启边框阴影|
+|subfield	|Boolean|	true|	fEditor|true： 双栏(编辑预览同屏)， false： 单栏(编辑预览分屏)|
+|defaultOpen|	String||	fEditor	|edit： 默认展示编辑区域 ， preview： 默认展示预览区域 , 其他 = edit|
+|placeholder|	String|	开始编辑...|fEditor |	输入框为空时默认提示文本|
+|editable|	Boolean|	true|fEditor|	是否允许编辑|
+|codeStyle|	String|	code-github	|fEditor, fRender|markdown样式： 默认github, 可选配色方案|
+|toolbarsFlag|	Boolean|	true|fEditor|	工具栏是否显示|
+|navigation|	Boolean|	false|fEditor	|默认展示目录|
+|shortCut|	Boolean|	true|	fEditor|是否启用快捷键|
+|autofocus|	Boolean|	true|	fEditor|自动聚焦到文本框|
+|ishljs|	Boolean|	true|fEditor, fRender|	代码高亮|
+|imageFilter|	function|	null|fEditor	|图片过滤函数，参数为一个File Object，要求返回一个Boolean, true表示文件合法，false表示文件不合法|
+|imageClick|	function|	null|fEditor, fRender	|图片点击事件，默认为预览，可覆盖|
+|tabSize|	Number|	\t|fEditor	|tab转化为几个空格，默认为\t|
+|toolbars|	Object|	如下例|	fEditor|工具栏|
+|sToolbars|	Object|	如下例|fEditor|	小屏幕时的工具栏|
 
 ```javascript
 /*
@@ -177,21 +177,24 @@ toolbars: {
 ```
 
 ### events 事件绑定
-|name 方法名|	params 参数	|describe 描述|
+|name 方法名|	params 参数|applicable component适用组件	|describe 描述|
 |---|---|---|
-|toc|	String: tocHtml|生成目录时触发，参数为生成目录的html，参数修改参考tocOption选项|
-|change|	String: value , String: render|	编辑区发生变化的回调事件(render: value 经过markdown解析后的结果)|
-|save|	String: value , String: render|	ctrl + s 的回调事件(保存按键,同样触发该回调)|
-|fullScreen|	Boolean: status , String: value|	切换全屏编辑的回调事件(boolean: 全屏开启状态)|
-|readModel|	Boolean: status , String: value|	切换沉浸式阅读的回调事件(boolean: 阅读开启状态)|
-|htmlCode|	Boolean: status , String: value|	查看html源码的回调事件(boolean: 源码开启状态)|
-|subfieldToggle|	Boolean: status , String: value|	切换单双栏编辑的回调事件(boolean: 双栏开启状态)|
-|previewToggle|	Boolean: status , String: value|	切换预览编辑的回调事件(boolean: 预览开启状态)|
-|helpToggle|	Boolean: status , String: value|	查看帮助的回调事件(boolean: 帮助开启状态)|
-|navigationToggle|	Boolean: status , String: value|	切换导航目录的回调事件(boolean: 导航开启状态)|
-|imgAdd|	String: filename, File: imgfile, VueInstance: $vm|	图片文件添加回调事件(filename: 写在md中的文件名, File: File Object, $vm 编辑器实例)|
+|toc|	String: tocHtml|fEditor, fRender|生成目录时触发，参数为生成目录的html，参数修改参考tocOption选项|
+|input|	String: value| fEditor|编辑区内容发生改变时触发，参数为编辑区内容|
+|render|	String: value|fEditor, fRender |markdown渲染时触发， 参数为渲染结果|
+|save|	String: value , String: render|fEditor|	ctrl + s 的回调事件(保存按键,同样触发该回调)|
+|fullScreen|	Boolean: status , String: value|	fEditor|切换全屏编辑的回调事件(boolean: 全屏开启状态)|
+|readModel|	Boolean: status , String: value|	fEditor|切换沉浸式阅读的回调事件(boolean: 阅读开启状态)|
+|htmlCode|	Boolean: status , String: value|	fEditor|查看html源码的回调事件(boolean: 源码开启状态)|
+|subfieldToggle|	Boolean: status , String: value|fEditor|	切换单双栏编辑的回调事件(boolean: 双栏开启状态)|
+|previewToggle|	Boolean: status , String: value|	fEditor|切换预览编辑的回调事件(boolean: 预览开启状态)|
+|helpToggle|	Boolean: status , String: value|fEditor	|查看帮助的回调事件(boolean: 帮助开启状态)|
+|navigationToggle|	Boolean: status , String: value|fEditor|	切换导航目录的回调事件(boolean: 导航开启状态)|
+|imgAdd|	String: filename, File: imgfile, VueInstance: $vm|	fEditor|图片文件添加回调事件(filename: 写在md中的文件名, File: File Object, $vm 编辑器实例)|
 
 ### slot插槽
+> 只适用于fEditor
+
 |name 插槽名称	|describe 描述|
 |---|---|
 |left-toolbar-before|左侧工具栏前方|
@@ -200,6 +203,8 @@ toolbars: {
 |right-toolbar-after|右侧工具栏后方|         
 
 ### 快捷键
+> 只适用于fEditor
+
 | key       | keycode  |            功能            |
 | -------- | :-----------: | :---------: |
 | F8           | 119 |  开启/关闭导航  |
@@ -226,11 +231,11 @@ toolbars: {
 | CTRL + M    | 17 + 77 | ==标记== |
 | CTRL + Q    | 17 + 81 | > 引用 |
 | CTRL + O    | 17 + 79 | 1. 有序列表 |
-| CTRL + L    | 17 + 76 | [链接]() |
+| CTRL + L    | 17 + 76 | [链接]\(\) |
 | CTRL + ALT + S    | 17 + 18 + 83 | ^上角标^ |
 | CTRL + ALT + U    | 17 + 18 + 85 | - 无序列表 |
 | CTRL + ALT + C    | 17 + 18 + 67 | ``` 代码块 |
-| CTRL + ALT + L    | 17 + 18 + 76 | ![图片链接]() |
+| CTRL + ALT + L    | 17 + 18 + 76 | \![图片链接]\(\) |
 | CTRL + ALT + T    | 17 + 18 + 84 | 表格 |
 | CTRL + SHIFT + S    | 17 + 16 + 83 | ~下角标~ |
 | CTRL + SHIFT + D    | 17 + 16 + 68 | ~~中划线~~ |
