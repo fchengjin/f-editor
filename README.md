@@ -98,7 +98,7 @@ export default {
 ### props
 
 | name 名称	| type 类型 | default默认值| applicable component适用组件|describe 描述|
-| --- | ---- | ----|--- |
+| --- | ---- | ----|----|--- |
 |value|String||fEditor, fRender|初始值|
 |tocOption|Object|{}|fEditor, fRender|目录设置，参考[ftoc](https://github.com/fchengjin/markdown-it-ftoc#options)，注意`tocCallback`已被占用，如有需要，请监听`toc`事件|
 |forbiddenHash|Boolean|true|fEditor, fRender|使用禁用hash跳转，避免触发vue路由切换动画|
@@ -178,7 +178,7 @@ toolbars: {
 
 ### events 事件绑定
 |name 方法名|	params 参数|applicable component适用组件	|describe 描述|
-|---|---|---|
+|---|---|---|---|
 |toc|	String: tocHtml|fEditor, fRender|生成目录时触发，参数为生成目录的html，参数修改参考tocOption选项|
 |input|	String: value| fEditor|编辑区内容发生改变时触发，参数为编辑区内容|
 |render|	String: value|fEditor, fRender |markdown渲染时触发， 参数为渲染结果|
