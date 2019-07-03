@@ -1,6 +1,6 @@
 {
-  "name": "f-md",
-  "version": "1.0.0",
+  "name": "f-editor",
+  "version": "1.0.1",
   "private": false,
   "keywords": [
     "markdown-it",
@@ -8,7 +8,7 @@
     "vue-markdown",
     "markdown-editor"
   ],
-  "main": "dist/f-md.umd.min.js",
+  "main": "dist/f-editor.umd.min.js",
   "author": {
     "email": "fchengjin@126.com",
     "name": "fcheng"
@@ -19,9 +19,15 @@
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build --dest doc",
     "lint": "vue-cli-service lint",
-    "prod": "vue-cli-service build --target lib --name f-md src/components/Editor/index.js"
+    "prod": "vue-cli-service build --target lib --name f-editor src/components/Editor/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fchengjin/f-editor.git"
   },
   "dependencies": {
+  },
+  "devDependencies": {
     "core-js": "^2.6.5",
     "markdown-it": "^8.4.2",
     "markdown-it-abbr": "^1.0.4",
@@ -38,9 +44,7 @@
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
     "markdown-it-task-lists": "^2.1.1",
-    "vue": "^2.6.10"
-  },
-  "devDependencies": {
+    "vue": "^2.6.10",
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",
     "@vue/cli-service": "^3.8.0",

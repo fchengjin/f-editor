@@ -7,15 +7,15 @@
 ### Es6
 
 ```shell
-npm install f-md  --save // or
-yarn add f-md
+npm install f-editor  --save // or
+yarn add f-editor 
 ```
 `index.js`
 ```javascript
 // 全局注册
     import Vue from 'vue'
-    import fMd from 'f-md'
-    import 'f-md/dist/f-md.css'
+    import fMd from 'f-editor'
+    import 'f-editor/dist/f-editor.css'
     // use
     Vue.use(fMd)
     new Vue({
@@ -41,9 +41,9 @@ yarn add f-md
   <f-render :value="value"/>
 </div>
 <script src="path/to/vue.js"></script>
-<script src="path/to/f-md.umd.js"></script>
+<script src="path/to/f-editor.umd.js"></script>
 <script>
-  Vue.use(window['f-md'])
+  Vue.use(window['f-editor'])
   new Vue({
     el: '#app',
     data() {
@@ -55,11 +55,11 @@ yarn add f-md
 
 ### 在nuxt中使用
 > 本插件支持SSR
-1. 在工程目录plugins 下新建`f-md.js`
+1. 在工程目录plugins 下新建`f-editor.js`
   ```javascript
   import Vue from 'vue'
-  import fMd from 'f-md'
-  import 'f-md/dist/f-md.css'
+  import fMd from 'f-editor'
+  import 'f-editor/dist/f-editor.css'
   // use
   Vue.use(fMd)
   ```
@@ -70,7 +70,7 @@ module.exports = {
   // ...
   plugins: [
     // ...
-    { src: '@/plugins/f-md', ssr: true }
+    { src: '@/plugins/f-editor', ssr: true }
   ],
 }
 ```
@@ -87,7 +87,7 @@ module.exports = {
 export default {
   data() {
     return {
-      content: "#### how to use f-md in nuxt.js"
+      content: "#### how to use f-editor in nuxt.js"
     };
   }
 };
