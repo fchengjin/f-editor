@@ -58,10 +58,10 @@ yarn add f-editor
 1. 在工程目录plugins 下新建`f-editor.js`
   ```javascript
   import Vue from 'vue'
-  import fMd from 'f-editor'
+  import fEditor from 'f-editor'
   import 'f-editor/dist/f-editor.css'
   // use
-  Vue.use(fMd)
+  Vue.use(fEditor)
   ```
 
 2. 在`nuxt.config.js`中添加plugins配置
