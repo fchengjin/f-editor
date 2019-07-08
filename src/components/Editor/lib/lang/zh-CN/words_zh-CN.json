@@ -50,5 +50,8 @@
   "tl_popup_img_link_text": "图片描述",
   "tl_popup_img_link_addr": "图片链接",
   "tl_popup_link_sure": "确定",
-  "tl_popup_link_cancel": "取消"
+  "tl_popup_link_cancel": "取消",
+  "limit": "限制",
+  "character": "个字符",
+  "canInput": "还可输入"
 }

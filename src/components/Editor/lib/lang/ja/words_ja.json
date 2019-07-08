@@ -50,5 +50,8 @@
   "tl_popup_img_link_text": "画像タイトル",
   "tl_popup_img_link_addr": "画像URL",
   "tl_popup_link_sure": "OK",
-  "tl_popup_link_cancel": "戻る"
+  "tl_popup_link_cancel": "戻る",
+  "limit": "最大",
+  "character": "文字",
+  "canInput": "入力可能"
 }

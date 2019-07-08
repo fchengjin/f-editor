@@ -11,6 +11,7 @@
       ref="vTextarea"
       v-model="tempValue"
       :autofocus="sAutofocus"
+      :maxlength="maxLength"
       spellcheck="false"
       :placeholder="placeholder"
       :style="{fontSize: fontSize , lineHeight: lineHeight}"
@@ -59,6 +60,10 @@ export default {
     lineHeight: {
       type: String,
       default: '18px'
+    },
+    maxLength: {
+      type: [Number, null],
+      default: null
     }
   },
   data () {

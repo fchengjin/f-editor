@@ -50,5 +50,8 @@
   "tl_popup_img_link_text": "Text des Bildes",
   "tl_popup_img_link_addr": "Link auf Bild",
   "tl_popup_link_sure": "Ja",
-  "tl_popup_link_cancel": "Abbruch"
+  "tl_popup_link_cancel": "Abbruch",
+  "limit": "Beschränken Sie",
+  "character": "Zeichen",
+  "canInput": "die restlichen"
 }

@@ -37,7 +37,7 @@
       <div
         ref="vNoteEdit"
         class="v-note-edit divarea-wrapper"
-        :class="{'scroll-style': sScrollStyle , 'single-edit': !sPreviewSwitch && !sHtmlCode , 'single-show': (!sSubfield && sPreviewSwitch) || (!sSubfield && sHtmlCode)}"
+        :class="{'scroll-style': sScrollStyle, 'single-edit': !sPreviewSwitch && !sHtmlCode , 'single-show': (!sSubfield && sPreviewSwitch) || (!sSubfield && sHtmlCode)}"
         @scroll="$v_edit_scroll"
         @click="textAreaFocus"
       >
@@ -49,6 +49,7 @@
             :placeholder="placeholder ? placeholder : dWords.start_editor"
             class="content-input"
             :font-size="fontSize"
+            :max-length="maxLength"
             line-height="1.5"
             full-height
             auto-focus
@@ -125,6 +126,10 @@
     <div :class="{'show': sReadModel}" class="v-note-read-model scroll-style" ref="vReadModel">
       <div ref="vNoteReadContent" class="v-note-read-content markdown-body" v-html="dRender"></div>
     </div>
+    <!-- 剩余字数 -->
+    <div class="remaining" v-if="maxLength">
+      <p>{{dWords.limit}} {{maxLength}} {{dWords.character}}, {{dWords.canInput}} <span  :class="{warning: remainingWarn}">{{maxLength - dValue.length}}</span> {{dWords.character}}</p>
+    </div>
   </div>
 </template>
 
@@ -177,6 +182,10 @@ export default {
       default () {
         return {}
       }
+    },
+    maxLength: {
+      type: [Number, null],
+      default: null
     },
     boxShadow: {
       type: Boolean,
@@ -316,12 +325,19 @@ export default {
       currentTimeout: '',
       dImageFile: [],
       toc: '',
-      smallScreen: false
+      smallScreen: false,
+      remainingWarn: false // 剩余字数警告
     }
   },
   watch: {
     dValue (val) {
       this.$emit('input', val)
+      // 处理长度限制
+      if (this.maxLength && val.length >= (this.maxLength - 10)) {
+        this.remainingWarn = true
+      } else {
+        this.remainingWarn = false
+      }
       // 塞入编辑记录数组
       if (this.dValue === this.dHistory[this.dHistoryIndex]) return
       clearTimeout(this.currentTimeout)
@@ -429,6 +445,7 @@ export default {
         this.smallScreen = true
       } else {
         this.smallScreen = false
+        this.sSubfield = this.subfield
       }
     },
     handleRender (val) {

@@ -50,5 +50,8 @@
   "tl_popup_img_link_text": "Текст изображения",
   "tl_popup_img_link_addr": "Ссылка изображения",
   "tl_popup_link_sure": "Добавить",
-  "tl_popup_link_cancel": "Отменить"
+  "tl_popup_link_cancel": "Отменить",
+  "limit": "Ограничьте",
+  "character": "символов",
+  "canInput": "также можно ввести"
 }

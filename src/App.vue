@@ -6,6 +6,7 @@
       :toc-option="tocOption"
       :ishljs="ishljs"
       @imgAdd="handleImgAdd"
+      :max-length="150"
     />
     <f-render :value="content" :ishljs="ishljs" :toc-option="tocOption" class="render-content"/>
     <button @click="toggle">toggle</button>

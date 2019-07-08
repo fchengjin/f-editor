@@ -50,5 +50,8 @@
   "tl_popup_img_link_text": "Image Text",
   "tl_popup_img_link_addr": "Image Link",
   "tl_popup_link_sure": "Sure",
-  "tl_popup_link_cancel": "Cancel"
+  "tl_popup_link_cancel": "Cancel",
+  "limit": "Limit",
+  "character": "characters",
+  "canInput": "and can input"
 }

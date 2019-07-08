@@ -45,6 +45,21 @@ textarea:disabled {
     height: auto !important;
     z-index: 1501;
   }
+  .remaining {
+    position: absolute;
+    bottom: 0;
+    right: 16px;
+    color: #9a9a9a;
+    text-align: right;
+    padding-left: 16px;;
+    line-height: 20px;
+    height: 20px;
+    font-size: 12px;
+    background: white;
+    .warning {
+      color: #f40;
+    }
+  }
   .v-note-op {
     width: 100%;
     display: flex;
@@ -128,18 +143,18 @@ textarea:disabled {
     .v-note-edit.divarea-wrapper {
       flex: 0 0 50%;
       width: 50%;
-      padding: 0;
+      padding: 0;      
       overflow-y: scroll;
       overflow-x: hidden;
       box-sizing: border-box;
       transition: all 0.2s linear 0s;
-      cursor: text;
+      cursor: text;      
       @include scrollbar;
       &.single-edit {
         width: 100%;
-        flex: 0 0 100%;
-        overflow-y: auto;
-      }
+        flex: 0 0 100%;  
+          overflow-y: auto;
+        }      
       &.single-show {
         width: 0;
         flex: 0 0 0;
@@ -156,7 +171,7 @@ textarea:disabled {
       }
       .content-input-wrapper {
         width: 100%;
-        padding: 8px 25px 15px 25px;
+        padding: 8px 16px 25px;
       }
     }
     .v-note-show {

@@ -102,6 +102,7 @@ export default {
 |value|String||fEditor, fRender|初始值|
 |tocOption|Object|{}|fEditor, fRender|目录设置，参考[ftoc](https://github.com/fchengjin/markdown-it-ftoc#options)，注意`tocCallback`已被占用，如有需要，请监听`toc`事件|
 |forbiddenHash|Boolean|true|fEditor, fRender|使用禁用hash跳转，避免触发vue路由切换动画|
+|maxLength|Number, null|true|fEditor|输入长度限制|
 |language|String|zh-CN	|fEditor|语言选择，暂支持 zh-CN: 中文简体 ， en: 英文 ， fr: 法语， pt-BR: 葡萄牙语， ru: 俄语， de: 德语， ja: 日语|
 |fontSize|String|14px	|fEditor|编辑区域文字大小|
 |scrollStyle	|Boolean|true	|fEditor, fRender|开启滚动条样式(暂时仅支持chrome)|
