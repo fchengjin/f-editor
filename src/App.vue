@@ -7,7 +7,7 @@
       :ishljs="ishljs"
       @imgAdd="handleImgAdd"
       :max-length="150"
-      :boxShadow="false"
+      :boxShadow="true"
     />
     <f-render :value="content" :ishljs="ishljs" :toc-option="tocOption" class="render-content"/>
     <button @click="toggle">toggle</button>
@@ -65,6 +65,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  padding: 20px;
 }
 .render-content {
   padding: 16px;

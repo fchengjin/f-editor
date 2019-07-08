@@ -69,8 +69,8 @@ textarea:disabled {
     border: $border-color;
     border-bottom: none;
     z-index: 1;
-    border: none;
     &.shadow {
+      border: none;
       box-shadow: 0 0px 4px rgba(0, 0, 0, 0.156863),
         0 0px 4px rgba(0, 0, 0, 0.227451);
       background: #fff;
@@ -345,7 +345,7 @@ textarea:disabled {
     min-width: 320px;
     transition: all 0.1s linear 0s;
     z-index: 3;
-    border: border-color;
+    border: $border-color;
     border: none;
     &.shadow {
       box-shadow: 0 0px 5px rgba(0, 0, 0, 0.156863),
