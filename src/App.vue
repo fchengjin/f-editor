@@ -7,6 +7,7 @@
       :ishljs="ishljs"
       @imgAdd="handleImgAdd"
       :max-length="150"
+      :boxShadow="false"
     />
     <f-render :value="content" :ishljs="ishljs" :toc-option="tocOption" class="render-content"/>
     <button @click="toggle">toggle</button>
