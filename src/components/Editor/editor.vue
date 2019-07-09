@@ -74,6 +74,7 @@
           @toc="handleToc"
           :ishljs="ishljs"
           @render="handleRender"
+          :use-toc="useToc"
         />
         <div
           v-show="sHtmlCode"
@@ -170,6 +171,10 @@ export default {
   props: {
     // 是否渲染滚动条样式(webkit)
     scrollStyle: {
+      type: Boolean,
+      default: true
+    },
+    useToc: {
       type: Boolean,
       default: true
     },

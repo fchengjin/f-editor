@@ -8,9 +8,15 @@
       @imgAdd="handleImgAdd"
       :max-length="150"
       :boxShadow="true"
+      :use-toc="true"
     />
-    <f-render :value="content" :ishljs="ishljs" :toc-option="tocOption" class="render-content"/>
-    <button @click="toggle">toggle</button>
+    <f-render
+      :value="content"
+      :use-toc="false"
+      :ishljs="ishljs"
+      :toc-option="tocOption"
+      class="render-content"
+    />
   </div>
 </template>
 

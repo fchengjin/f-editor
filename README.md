@@ -100,7 +100,8 @@ export default {
 | name 名称	| type 类型 | default默认值| applicable component适用组件|describe 描述|
 | --- | ---- | ----|----|--- |
 |value|String||fEditor, fRender|初始值|
-|tocOption|Object|{}|fEditor, fRender|目录设置，参考[ftoc](https://github.com/fchengjin/markdown-it-ftoc#options)，注意`tocCallback`已被占用，如有需要，请监听`toc`事件|
+|useToc|Boolean|true|fEditor, fRender|是否使用ftoc|
+|tocOption|Object|{}|fEditor, fRender|前提是设置useToc为true,目录设置，参考[ftoc](https://github.com/fchengjin/markdown-it-ftoc#options)，注意`tocCallback`已被占用，如有需要，请监听`toc`事件|
 |forbiddenHash|Boolean|true|fEditor, fRender|使用禁用hash跳转，避免触发vue路由切换动画|
 |maxLength|Number, null|true|fEditor|输入长度限制|
 |language|String|zh-CN	|fEditor|语言选择，暂支持 zh-CN: 中文简体 ， en: 英文 ， fr: 法语， pt-BR: 葡萄牙语， ru: 俄语， de: 德语， ja: 日语|

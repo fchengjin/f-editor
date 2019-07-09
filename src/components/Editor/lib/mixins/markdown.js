@@ -3,6 +3,7 @@ import hljsLangs from '../core/hljs/lang.hljs.js'
 import {
   loadScript
 } from '../core/extra-function.js'
+const clone = require('clone')
 
 const markdown_config = {
   html: true, // Enable HTML tags in source
@@ -41,7 +42,8 @@ const miip = require('markdown-it-images-preview')
 // 处理代码高亮
 const mihe = require('markdown-it-highlightjs-external')
 
-const toc = require('markdown-it-ftoc')
+// math katex
+const katex = require('markdown-it-katex-external')
 
 const missLangs = {}
 const needLangs = []
@@ -75,8 +77,6 @@ markdown.renderer.rules.link_open = function (tokens, idx, options, env, self) {
   return defaultRender(tokens, idx, options, env, self)
 }
 
-// math katex
-const katex = require('markdown-it-katex-external')
 markdown
   .use(emoji)
   .use(sup)
@@ -104,11 +104,15 @@ export default {
       default () {
         return {}
       }
+    },
+    useToc: {
+      type: Boolean,
+      default: true
     }
   },
   data () {
     return {
-      markdownIt: markdown
+      markdownIt: clone(markdown)
     }
   },
   beforeMount () {
@@ -120,8 +124,10 @@ export default {
 
     hljs_opts.highlighted = this.ishljs
 
-    this.markdownIt.use(mihe, hljs_opts)
-      .use(katex).use(toc, Object.assign({}, this.tocOption, defaultTocOption))
+    this.markdownIt.use(mihe, hljs_opts).use(katex)
+    if (this.useToc) {
+      this.markdownIt.use(require('markdown-it-ftoc'), Object.assign({}, this.tocOption, defaultTocOption))
+    }
   },
 
   methods: {
