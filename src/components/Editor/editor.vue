@@ -335,7 +335,8 @@ export default {
     }
   },
   watch: {
-    dValue (val) {
+    dValue (val, oldVal) {
+      if (val === oldVal) return
       this.$emit('input', val)
       // 处理长度限制
       if (this.maxLength && val.length >= (this.maxLength - 10)) {
